@@ -11,9 +11,12 @@ describe('select', function () {
     return db.flushdb();
   });
 
-  it('selects the appropriate database', function () {
-    db.select(3).then(function (){
+  it('selects the appropriate database', function (done) {
+    db.select(3).then(function () {
       expect(db.selected_db).toEqual(3);
-    });
+      done();
+    }).catch(function (err) {
+      done(err);
+    })
   });
 });
